@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch
 
-from groupy.gfunc import plot_z2
+from groupy.gfunc.plot.plot_z2 import plot_z2
 
 
 def plot_p4(f, fignum=None, rlabels='cayley', rcolor='red', rlinestyle='-',
