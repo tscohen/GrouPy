@@ -1,5 +1,5 @@
 
-from groupy.gconv.chainer_gconv import index_group_func_kernel
+from groupy.gconv.chainer_gconv.kernels.integer_indexing_cuda_kernel import index_group_func_kernel
 
 
 def test_index_group_func():
