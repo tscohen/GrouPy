@@ -58,9 +58,9 @@ Additionally, a GFuncArray can be transformed by group elements stored in a GArr
 
 The transformation behaviour for a function on the rotation-translation group (p4) and the rotation-flip-translation group (p4m) is shown below. This function could represent a feature map or filter in a G-CNN.
 
-![p4_fmap_e](./p4_fmaps.png)
+![p4_anim](./p4_anim.gif)
 
-A function on p4 and its rotation by 90 degrees. Rotating a function on p4 amounts to rolling the 4 patches (in counterclockwise direction).
+A rotating function on p4. Rotating a function on p4 amounts to rolling the 4 patches (in counterclockwise direction). "Rolling" means that each square patch moves to the next one (indicated by the red arrow), while simultaneously undergoing a 90 degree rotation. For visual clarity, the animation contains frames at multiples of 45 degrees, but it should be noted that only rotations by multiples of 90 degrees are part of the group p4. 
 
 ![p4m_fmap_e](./p4m_fmaps.png)
 
