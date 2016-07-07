@@ -34,9 +34,9 @@ def plot_p4m(f, fignum=None, rlabels='cayley_mr', rcolor='red', mcolor='blue', r
     ny, nx = f.shape[2:4]
 
     rlabel_names = {
-        'cayley_rm': ['$e$', '$r$', '$r^2$', '$r^3$', '$m$', '$rm$', '$r^2m$', '$r^3m$'],
-        'cayley_mr': ['$e$', '$r$', '$r^2$', '$r^3$', '$m$', '$mr^3$', '$mr^2$', '$mr$'],
-        'cayley2': ['$e$', '$r$', '$r^2$', '$r^3$', '$m$', '$mr^3$\n$=$\n$rm$', '$r^2m = mr^2$', '$mr$\n$=$\n$r^3m$'],
+        'cayley_rm': ['$e$', '$r$', '$r^2$', '$r^3$', '$m$', '$r^3m$', '$r^2m$', '$rm$'],
+        'cayley_mr': ['$e$', '$r$', '$r^2$', '$r^3$', '$m$', '$mr$', '$mr^2$', '$mr^3$'],
+        'cayley2': ['$e$', '$r$', '$r^2$', '$r^3$', '$m$', '$mr$\n$=$\n$r^3m$', '$r^2m = mr^2$', '$mr^3$\n$=$\n$rm$'],
         'none': ['', '', '', '', '', '', '', '']
     }
 
@@ -101,7 +101,7 @@ def plot_p4m(f, fignum=None, rlabels='cayley_mr', rcolor='red', mcolor='blue', r
     ax_m.set_yticks([])
 
     ax_mr3 = fig.add_subplot(5, 5, 11)
-    plot_z2(f[1, 3], fignum=fignum)
+    plot_z2(f[1, 1], fignum=fignum)
     ax_mr3.yaxis.set_label_position('left')
     ax_mr3.set_ylabel(
         rlabel_names[rlabels][5],
@@ -123,7 +123,7 @@ def plot_p4m(f, fignum=None, rlabels='cayley_mr', rcolor='red', mcolor='blue', r
     ax_mr2.set_yticks([])
 
     ax_mr = fig.add_subplot(5, 5, 15)
-    plot_z2(f[1, 1], fignum=fignum)
+    plot_z2(f[1, 3], fignum=fignum)
     ax_mr.yaxis.set_label_position('right')
     ax_mr.set_ylabel(
         rlabel_names[rlabels][7],

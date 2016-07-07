@@ -59,6 +59,13 @@ class MatrixGArray(GArray):
         out = np.einsum('...ij,...j->...i', self_mat, other.data)
         return other.factory(data=out, p=other.p)
 
+    def left_action_hvec(self, other):
+        self_hmat = self.reparameterize('hmat').data
+        assert other.p == 'int'  # TODO
+        self_mat = self_hmat[..., :-1, :-1]
+        out = np.einsum('...ij,...j->...i', self_mat, other.data) + self_hmat[..., :-1, -1]
+        return other.factory(data=out, p=other.p)
+
     def int2mat(self, int_data):
         raise NotImplementedError()
 

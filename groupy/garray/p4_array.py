@@ -37,7 +37,7 @@ class P4Array(MatrixGArray):
         data = np.asarray(data)
         assert data.dtype == np.int
         self._left_actions[P4Array] = self.__class__.left_action_hmat
-        self._left_actions[Z2Array] = self.__class__.left_action_vec
+        self._left_actions[Z2Array] = self.__class__.left_action_hvec
         super(P4Array, self).__init__(data, p)
 
     def int2hmat(self, int_data):

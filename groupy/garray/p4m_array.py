@@ -1,6 +1,7 @@
 
 import numpy as np
 from groupy.garray.matrix_garray import MatrixGArray
+from groupy.garray.Z2_array import Z2Array
 
 # A transformation in p4m can be coded using four integers:
 # m in {0, 1}, mirror reflection in the second translation axis or not
@@ -42,6 +43,7 @@ class P4MArray(MatrixGArray):
         assert (p == 'int' and data.shape[-1] == 4) or (p == 'hmat' and data.shape[-2:] == (3, 3))
 
         self._left_actions[P4MArray] = self.__class__.left_action_hmat
+        self._left_actions[Z2Array] = self.__class__.left_action_hvec
 
         super(P4MArray, self).__init__(data, p)
 
