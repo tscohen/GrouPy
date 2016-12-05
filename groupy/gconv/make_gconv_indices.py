@@ -53,3 +53,26 @@ def make_d4_p4m_indices(ksize):
     f = P4MFuncArray(v=x)
     li = f.left_translation_indices(D4.flatten()[:, None, None, None])
     return li.astype('int32')
+
+
+def flatten_indices(inds):
+    """
+    The Chainer implementation of G-Conv uses indices into a 5D filter tensor (with an additional axis for the
+    transformations H. For the tensorflow implementation it was more convenient to flatten the filter tensor into
+    a 3D tensor with shape (output channels, input channels, transformations * width * height).
+
+    This function takes indices in the format required for Chainer and turns them into indices into the flat array
+    used by tensorflow.
+
+    :param inds: np.ndarray of shape (output transformations, input transformations, n, n, 3), as output by
+    the functions like make_d4_p4m_indices(n).
+    :return: np.ndarray of shape (output transformations, input transformations, n, n)
+    """
+    n = inds.shape[-2]
+    nti = inds.shape[1]
+    T = inds[..., 0]  # shape (nto, nti, n, n)
+    U = inds[..., 1]  # shape (nto, nti, n, n)
+    V = inds[..., 2]  # shape (nto, nti, n, n)
+    # inds_flat = T * n * n + U * n + V
+    inds_flat = U * n * nti + V * nti + T
+    return inds_flat

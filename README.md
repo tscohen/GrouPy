@@ -1,7 +1,7 @@
 
 # GrouPy
 
-GrouPy is a python library that implements group equivariant convolutional neural networks [\[Cohen & Welling, 2016\]](#gcnn), and supports other numerical computations involving transformation groups.
+GrouPy is a python library that implements group equivariant convolutional neural networks [\[Cohen & Welling, 2016\]](#gcnn) in Chainer and TensorFlow, and supports other numerical computations involving transformation groups.
 
 GrouPy consists of the following modules:
 
@@ -11,7 +11,7 @@ GrouPy consists of the following modules:
 
 The modules garray and gfunc are used in a quick precomputation stage and run on CPU, while gconv is used to train and test the neural network, and runs on GPU.
 
-The group convolution has so far only been tested in the Chainer framework, but a (largely untested) tensorflow implementation is available, and the code is written so that porting to theano, torch, or other frameworks is relatively easy. Most of the complexity of the code is in a precomputation step that generates indices used for transforming the filters, and this step can be shared by every deep learning framework. The rest is a basic indexing operation.
+We have mostly worked with the Chainer implementation (see [experiments](https://github.com/tscohen/gconv_experiments)) but a unit-tested tensorflow implementation is available, and the code is written so that porting to theano, torch, or other frameworks is relatively easy. Most of the complexity of the code is in a precomputation step that generates indices used for transforming the filters, and this step can be shared by every deep learning framework. The rest is a basic indexing operation.
 
 
 ## Setup
@@ -21,9 +21,9 @@ Install scientific python stack + nosetests
 $ pip install numpy scipy matplotlib nose
 ```
 
-Install [chainer](http://chainer.org/) with CUDNN and HDF5: [installation instructions](https://chainer.readthedocs.io/en/stable/install.html). Alternatively, install [tensorflow](https://www.tensorflow.org/) (curently, tensorflow support is limited).
+Install [chainer](http://chainer.org/) with CUDNN and HDF5 or install [tensorflow](https://www.tensorflow.org/)
 
-Clone the latest version from github and run setup.py
+Clone the latest GrouPy from github and run setup.py
 
 ```
 $ python setup.py install
@@ -35,6 +35,58 @@ To run the tests, navigate to the groupy directory and run
 $ nosetests -v
 ```
 
+## Getting Started
+
+### TensorFlow
+
+```
+import numpy as np
+import tensorflow as tf
+from groupy.gconv.tensorflow_gconv.splitgconv2d import gconv2d, gconv2d_util
+
+# Construct graph
+x = tf.placeholder(tf.float32, [None, 9, 9, 3])
+
+gconv_indices, gconv_shape_info, w_shape = gconv2d_util(
+    h_input='Z2', h_output='D4', in_channels=3, out_channels=64, ksize=3)
+w = tf.Variable(tf.truncated_normal(w_shape, stddev=1.))
+y = gconv2d(input=x, filter=w, strides=[1, 1, 1, 1], padding='SAME',
+            gconv_indices=gconv_indices, gconv_shape_info=gconv_shape_info)
+
+gconv_indices, gconv_shape_info, w_shape = gconv2d_util(
+    h_input='D4', h_output='D4', in_channels=64, out_channels=64, ksize=3)
+w = tf.Variable(tf.truncated_normal(w_shape, stddev=1.))
+y = gconv2d(input=y, filter=w, strides=[1, 1, 1, 1], padding='SAME',
+            gconv_indices=gconv_indices, gconv_shape_info=gconv_shape_info)
+
+# Compute
+init = tf.global_variables_initializer()
+sess = tf.Session()
+sess.run(init)
+y = sess.run(y, feed_dict={x: np.random.randn(10, 9, 9, 3)})
+sess.close()
+
+print y.shape  # (10, 9, 9, 512) 
+```
+
+### Chainer
+
+```
+from chainer import Variable
+import cupy as cp
+from groupy.gconv.chainer_gconv import P4ConvZ2, P4ConvP4
+
+# Construct G-Conv layers and copy to GPU
+C1 = P4ConvZ2(in_channels=3, out_channels=64, ksize=3, stride=1, pad=1).to_gpu()
+C2 = P4ConvP4(in_channels=64, out_channels=64, ksize=3, stride=1, pad=1).to_gpu()
+
+# Create 10 images with 3 channels and 9x9 pixels:
+x = Variable(cp.random.randn(10, 3, 9, 9).astype('float32'))
+
+# fprop
+y = C2(C1(x))
+print y.data.shape  # (10, 64, 4, 9, 9)
+```
 
 
 ## Functionality
@@ -73,28 +125,7 @@ The gfunc.plot module contains code for plotting the [Cayley](https://en.wikiped
 
 ### Convolution
 
-The gconv module contains group convolution layers for use in neural networks.
-
-The Chainer implementation can be used as follows:
-
-```
-from chainer import Variable
-import cupy as cp
-from groupy.gconv.chainer_gconv import P4ConvZ2, P4ConvP4
-
-# Construct G-Conv layers and copy to GPU
-C1 = P4ConvZ2(in_channels=3, out_channels=64, ksize=3, stride=1, pad=1).to_gpu()
-C2 = P4ConvP4(in_channels=64, out_channels=64, ksize=3, stride=1, pad=1).to_gpu()
-
-# Create 10 images with 3 channels and 9x9 pixels:
-x = Variable(cp.random.randn(10, 3, 9, 9).astype('float32'))
-
-# fprop
-y = C2(C1(x))
-print y.data.shape  # (10, 64, 4, 9, 9)
-```
-
-A first stab at a tensorflow implementation can be found gconv.tensorflow_gconv
+The gconv module contains group convolution layers for use in neural networks. The TensorFlow implementation is in gconv.tensorflow_gconv.splitgconv2d.py and the Chainer implementation is in gconv.chainer_gconv.p4m_conv.py and similar files.
 
 
 ## Implementation notes
