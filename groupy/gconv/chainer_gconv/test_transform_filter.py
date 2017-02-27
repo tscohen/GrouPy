@@ -65,5 +65,5 @@ def check_transform_grad(inds, w, transformer, dtype, toll):
 
     relerr = np.max(np.abs(gan - gat) / np.maximum(np.abs(gan), np.abs(gat)))
 
-    print dtype, toll, relerr
+    print (dtype, toll, relerr)
     assert relerr < toll

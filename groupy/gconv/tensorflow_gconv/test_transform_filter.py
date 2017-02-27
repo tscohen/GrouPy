@@ -21,7 +21,7 @@ def check_c4_z2():
     rc = ch_trans_filter(w, inds)
 
     diff = np.abs(rt - rc).sum()
-    print '>>>>> DIFFERENCE:', diff
+    print ('>>>>> DIFFERENCE:', diff)
     assert diff == 0
 
 
@@ -33,7 +33,7 @@ def check_c4_p4():
     rc = ch_trans_filter(w, inds)
 
     diff = np.abs(rt - rc).sum()
-    print '>>>>> DIFFERENCE:', diff
+    print ('>>>>> DIFFERENCE:', diff)
     assert diff == 0
 
 
@@ -45,7 +45,7 @@ def check_d4_z2():
     rc = ch_trans_filter(w, inds)
 
     diff = np.abs(rt - rc).sum()
-    print '>>>>> DIFFERENCE:', diff
+    print ('>>>>> DIFFERENCE:', diff)
     assert diff == 0
 
 
@@ -57,7 +57,7 @@ def check_d4_p4m():
     rc = ch_trans_filter(w, inds)
 
     diff = np.abs(rt - rc).sum()
-    print '>>>>> DIFFERENCE:', diff
+    print ('>>>>> DIFFERENCE:', diff)
     assert diff == 0
 
 

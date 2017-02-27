@@ -65,5 +65,5 @@ def check_equivariance(im, input, output, input_array, output_array, point_group
     fmap1_garray = output_array(yrx.transpose((0, 3, 1, 2)))
     r_fmap1_data = (g.inv() * fmap1_garray).v.transpose((0, 2, 3, 1))
 
-    print np.abs(yx - r_fmap1_data).sum()
+    print (np.abs(yx - r_fmap1_data).sum())
     assert np.allclose(yx, r_fmap1_data, rtol=1e-5, atol=1e-3)
