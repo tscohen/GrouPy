@@ -8,9 +8,9 @@ from groupy.gconv.tensorflow_gconv.transform_filter import transform_filter_2d_n
 from groupy.gconv.make_gconv_indices import make_c4_z2_indices, make_c4_p4_indices,\
     make_d4_z2_indices, make_d4_p4m_indices, flatten_indices
 
-# NOTE: previously, I had some issues with running tensorflow and Chainer in the same session.
-# This problem seems to be gone with the latest versions of these libraries, but I don't know why.
-# If you have trouble running these tests, see if that is the issue and disable these tests if it is.
+# NOTE: it seems like loading tensorflow and Chainer in the same session is likely to result in problems.
+# I've disabled these tests for now (renamed to check_... instead of test_... so they are ignored by nose)
+# They should still work if you run these in a separate session
 
 
 def check_c4_z2():
