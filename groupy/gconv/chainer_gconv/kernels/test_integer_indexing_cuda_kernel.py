@@ -24,6 +24,6 @@ def test_index_group_func():
     cpoutput = cuda.to_cpu(cpoutput)
 
     error = np.abs(cpoutput - output).sum()
-    print error
+    print(error)
     assert np.isclose(error, 0.)
 
