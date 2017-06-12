@@ -80,7 +80,7 @@ class SplitGConv2D(nn.Module):
 
         if self.use_bias:
             self.bias = nn.Parameter(
-                torch.ones(self.out_channels))
+                torch.zeros(self.out_channels))
 
         # Shorthands
         ni, no = in_channels, out_channels
