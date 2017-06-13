@@ -57,7 +57,7 @@ class SplitGConv2D(nn.Module):
         :return:
         """
 
-        super().__init__(*args, **kwargs)
+        super(SplitGConv2D, self).__init__(*args, **kwargs)
 
         if not isinstance(ksize, int):
             raise TypeError('ksize must be an integer (only square filters '
