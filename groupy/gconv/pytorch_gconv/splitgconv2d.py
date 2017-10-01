@@ -14,7 +14,7 @@ make_indices_functions = {(1, 4): make_c4_z2_indices,
 
 def trans_filter(w, inds):
     inds_reshape = inds.reshape((-1, inds.shape[-1])).astype(np.int64)
-    w_indexed = w[:, :, inds_reshape[:, 0], inds_reshape[:, 1], inds_reshape[:, 2]]
+    w_indexed = w[:, :, inds_reshape[:, 0].tolist(), inds_reshape[:, 1].tolist(), inds_reshape[:, 2].tolist()]
     w_indexed = w_indexed.view(w_indexed.size()[0], w_indexed.size()[1],
                                     inds.shape[0], inds.shape[1], inds.shape[2], inds.shape[3])
     w_transformed = w_indexed.permute(0, 2, 1, 3, 4, 5)
