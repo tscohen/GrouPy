@@ -10,6 +10,7 @@ These are the elements of C4h, with added reflection.
 Int parameterisation contains an extra parameter, m (in {0, 1}) to represent this reflection.
 """
 
+
 class D4hArray(MatrixGArray):
     parameterizations = ['int', 'mat', 'hmat']
     _g_shapes = {'int': (3,), 'mat': (3, 3), 'hmat': (4, 4)}
@@ -28,7 +29,6 @@ class D4hArray(MatrixGArray):
 
         super(D4hArray, self).__init__(data, p)
         self.elements = self.get_elements()
-
 
     def mat2int(self, mat_data):
         '''
@@ -125,6 +125,7 @@ class D4hGroup(FiniteGroup, D4hArray):
 
     def factory(self, *args, **kwargs):
         return D4hArray(*args, **kwargs)
+
 
 D4h = D4hGroup()
 

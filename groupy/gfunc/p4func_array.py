@@ -1,4 +1,3 @@
-
 import numpy as np
 import groupy.garray.p4_array as p4a
 from groupy.gfunc.gfuncarray import GFuncArray
@@ -49,7 +48,7 @@ class P4FuncArray(GFuncArray):
 
 def tst():
 
-    from groupy.garray.p4_array import P4Array, meshgrid, u_range, v_range, rotation, translation
+    from groupy.garray.p4_array import meshgrid, u_range, v_range, rotation
 
     x = np.random.randn(4, 3, 3)
     c = meshgrid(u=u_range(-1, 2), v=v_range(-1, 2))
@@ -66,3 +65,4 @@ def tst():
     gfi = f.v[li[..., 0], li[..., 1], li[..., 2]]
 
     return x, c, f, li, gf, gfp, gfi
+

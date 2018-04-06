@@ -18,11 +18,13 @@ def check_o_z3_conv_equivariance():
     x, y = make_graph('Z3', 'O', ksize)
     check_equivariance(im, x, y, Z3FuncArray, OtFuncArray, O)
 
+
 def check_o_o_conv_equivariance():
     ksize = 3
     im = np.random.randn(2, ksize, ksize, ksize, 24)
     x, y = make_graph('O', 'O', ksize)
     check_equivariance(im, x, y, OtFuncArray, OtFuncArray, O)
+
 
 def check_oh_z3_conv_equivariance():
     ksize = 3
@@ -37,11 +39,13 @@ def check_oh_oh_conv_equivariance():
     x, y = make_graph('OH', 'OH', ksize)
     check_equivariance(im, x, y, OhtFuncArray, OhtFuncArray, Oh)
 
+
 def check_c4h_z3_conv_equivariance():
     ksize = 3
     im = np.random.randn(2, ksize, ksize, ksize, 1)
     x, y = make_graph('Z3', 'C4H', ksize)
     check_equivariance(im, x, y, Z3FuncArray, C4htFuncArray, C4h)
+
 
 def check_c4h_c4h_conv_equivariance():
     ksize = 3
@@ -49,11 +53,13 @@ def check_c4h_c4h_conv_equivariance():
     x, y = make_graph('C4H', 'C4H', ksize)
     check_equivariance(im, x, y, C4htFuncArray, C4htFuncArray, C4h)
 
+
 def check_d4h_z3_conv_equivariance():
     ksize = 3
     im = np.random.randn(2, ksize, ksize, ksize, 1)
     x, y = make_graph('Z3', 'D4H', ksize)
     check_equivariance(im, x, y, Z3FuncArray, D4htFuncArray, D4h)
+
 
 def check_d4h_d4h_conv_equivariance():
     ksize = 3

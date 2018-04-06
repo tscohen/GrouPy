@@ -18,8 +18,6 @@ from groupy.gfunc.p4func_array import P4FuncArray
 from groupy.gfunc.p4mfunc_array import P4MFuncArray
 from groupy.gfunc.z2func_array import Z2FuncArray
 from groupy.gfunc.z3func_array import Z3FuncArray
-
-
 def make_c4_z2_indices(ksize):
     x = np.random.randn(1, ksize, ksize)
     f = Z2FuncArray(v=x)
@@ -44,6 +42,7 @@ def make_c4_p4_indices(ksize):
         li = f.left_translation_indices(C4[:, None, None, None])
     return li.astype('int32')
 
+
 def make_d4h_z3_indices(ksize):
     assert ksize % 2 == 1
     x = np.random.randn(1, ksize, ksize, ksize)
@@ -54,12 +53,14 @@ def make_d4h_z3_indices(ksize):
     iuvw = np.c_[i, uvw]
     return iuvw.astype('int32')
 
+
 def make_d4h_d4ht_indices(ksize):
     assert ksize % 2 == 1
     x = np.random.randn(16, ksize, ksize, ksize)
     f = D4htFuncArray(v=x)
     li = f.left_translation_indices(D4h[:, None, None, None, None])
     return li.astype('int32')
+
 
 def make_c4h_z3_indices(ksize):
     assert ksize % 2 == 1
@@ -71,12 +72,14 @@ def make_c4h_z3_indices(ksize):
     iuvw = np.c_[i, uvw]
     return iuvw.astype('int32')
 
+
 def make_c4h_c4ht_indices(ksize):
     assert ksize % 2 == 1
     x = np.random.randn(8, ksize, ksize, ksize)
     f = C4htFuncArray(v=x)
     li = f.left_translation_indices(C4h[:, None, None, None, None])
     return li.astype('int32')
+
 
 def make_o_z3_indices(ksize):
     assert ksize % 2 == 1
@@ -96,6 +99,7 @@ def make_o_ot_indices(ksize):
     li = f.left_translation_indices(O[:, None, None, None, None])
     return li.astype('int32')
 
+
 def make_oh_z3_indices(ksize):
     assert ksize % 2 == 1
     x = np.random.randn(1, ksize, ksize, ksize)
@@ -106,12 +110,14 @@ def make_oh_z3_indices(ksize):
     iuvw = np.c_[i, uvw]
     return iuvw.astype('int32')
 
+
 def make_oh_oht_indices(ksize):
     assert ksize % 2 == 1
     x = np.random.randn(48, ksize, ksize, ksize)
     f = OhtFuncArray(v=x)
     li = f.left_translation_indices(Oh[:, None, None, None, None])
     return li.astype('int32')
+
 
 def make_d4_z2_indices(ksize):
     assert ksize % 2 == 1  # TODO

@@ -18,6 +18,7 @@ The int parameterization is in the form of (y, z) where y represents the number 
 over y (in {0, 1}) and z the number of 90 degree rotations over z (in {0, 1, 2, 3}) 
 """
 
+
 class C4hArray(MatrixGArray):
     parameterizations = ['int', 'mat', 'hmat']
     _g_shapes = {'int': (2,), 'mat': (3, 3), 'hmat': (4, 4)}

@@ -91,6 +91,7 @@ class C4htArray(MatrixGArray):
         for i in range(times):
             element = np.dot(element, np.array(generator))
         return element
+
     def get_elements(self):
         '''
         Function to generate a list containing elements of group C4ht,

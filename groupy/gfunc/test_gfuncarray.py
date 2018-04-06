@@ -10,8 +10,6 @@ def test_ot_func():
 
     g = o.rand(size=(1,))
     h = o.rand(size=(1,))
-    print(g)
-    print(h)
 
     check_associative(g, h, f)
     check_identity(o, f)
@@ -160,10 +158,7 @@ def check_identity(garray_module, a):
 
 
 def check_invertible(g, f):
-    a = g.inv()
-    b = (g * f)
-    c = a * b
-    assert (c.v == f.v).all()
+    assert ((g.inv() * (g * f)).v == f.v).all()
 
 
 def check_i2g_g2i_invertible(f):

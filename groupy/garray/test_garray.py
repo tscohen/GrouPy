@@ -41,17 +41,21 @@ def test_c4h_array():
     from groupy.garray import C4h_array
     check_finite_group(C4h_array, C4h_array.C4hArray, C4h_array.C4h)
 
+
 def test_c4ht_array():
     from groupy.garray import C4ht_array
     check_space_group(C4ht_array, C4ht_array.C4htArray)
 #
+
 def test_d4h_array():
     from groupy.garray import D4h_array
     check_finite_group(D4h_array, D4h_array.D4hArray, D4h_array.D4h)
 
+
 def test_d4ht_array():
     from groupy.garray import D4ht_array
     check_space_group(D4ht_array, D4ht_array.D4htArray)
+
 
 def test_oh_array():
     from groupy.garray import Oh_array
@@ -61,6 +65,7 @@ def test_oh_array():
 def test_ot_array():
     from groupy.garray import Ot_array
     check_space_group(Ot_array, Ot_array.OtArray)
+
 
 def test_oht_array():
     from groupy.garray import Oht_array
@@ -80,6 +85,7 @@ def check_space_group(garray_module, garray_class):
 
     m = garray_module.meshgrid(minu=-1, maxu=2, minv=-1, maxv=2, minw=-1, maxw=2)
     check_closed_inverse(m)
+
 
 def check_wallpaper_group(garray_module, garray_class):
     a = garray_module.rand(minu=-1, maxu=2, minv=-1, maxv=2, size=(2, 3))

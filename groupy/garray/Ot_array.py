@@ -3,7 +3,7 @@ import random
 import numpy as np
 from groupy.garray.matrix_garray import MatrixGArray
 
-""" 
+"""
 Implementation of the non-orientation perserving variant of group O -- O with translations. 
 The int parameterisation is similar to that of O, but with the added 3D translation (u, v, w) to indicate
 translation in Z3 (i.e. i,  u, v, w). 
