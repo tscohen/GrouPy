@@ -3,21 +3,13 @@ import random
 import numpy as np
 from groupy.garray.matrix_garray import MatrixGArray
 
-'''
-Implementation of the space group O that allows translations.
-It has no official name, and is therefore now referred to as Ot.
+""" 
+Implementation of the non-orientation perserving variant of group O -- O with translations. 
+The int parameterisation is similar to that of O, but with the added 3D translation (u, v, w) to indicate
+translation in Z3 (i.e. i,  u, v, w). 
 
-Implementation is similar to that of group O. However, to represent
-the translations in a 3D space, the int parameterization is now
-in the form of (i, u, v, w) representing the index in the element list,
-and the translation in the x, y and z direction respectively.
-
-To accurately represent the translation, we use 4x4 homogeneous matrices
-(hmat) instead of the 3x3 matrix.
-
-Note: self.base_elements are 3x3 matrices.
-'''
-
+4x4 homogeneous matrices (hmat) are used to represent the transformation in matrix format. 
+"""
 
 class OtArray(MatrixGArray):
     '''

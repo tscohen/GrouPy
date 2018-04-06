@@ -4,15 +4,11 @@ from groupy.garray.matrix_garray import MatrixGArray
 from groupy.garray.D4ht_array import D4htArray
 from groupy.garray.Z3_array import Z3Array
 
-'''
-Implementation of finite group D4h, the group of beam symmetry with reflections. No official name is known as of yet, 
-but the group exists of 180 degree rotations over the y-axis and 90 degree rotations over the z-axis,
-combined with reflections -- 16 elements in total. 
-
-Int parameterization is in the form of (y, z, m) where y represents the number of 180 degree rotations over the y axis
-(0, 1), z represents the number of 180 degree rotations over the z axis (0, 1, 2, 3) and m (for mirror) represents the
-reflection (0, 1).
-'''
+"""
+Implementation of dihedral finite group D4h, consisting of 16 elements in total. 
+These are the elements of C4h, with added reflection. 
+Int parameterisation contains an extra parameter, m (in {0, 1}) to represent this reflection.
+"""
 
 class D4hArray(MatrixGArray):
     parameterizations = ['int', 'mat', 'hmat']

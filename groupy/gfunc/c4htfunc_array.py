@@ -51,7 +51,7 @@ class C4htFuncArray(GFuncArray):
         gint[..., 4] -= self.wmin
 
         # flat stabilizer: instead of (4, 2, ...) use (8, ...)
-        gint[..., 1] += gint[..., 0] * 4    # multiply by 4 because 4 z rotations for each y
+        gint[..., 1] += gint[..., 0] * 4
         gint = gint[..., 1:]
 
         return gint

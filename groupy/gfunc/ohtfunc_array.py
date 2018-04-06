@@ -52,6 +52,6 @@ class OhtFuncArray(GFuncArray):
         gint[..., 4] -= self.wmin
 
         # flat stabilizer: instead of (24, 2, ...) use (48, ...)
-        gint[..., 1] += gint[..., 0] * 2    # multiply by 2 because 2 reflections for each of the 24 elements.
+        gint[..., 1] += gint[..., 0] * 2
         gint = gint[..., 1:]
         return gint

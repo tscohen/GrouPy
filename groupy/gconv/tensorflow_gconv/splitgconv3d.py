@@ -1,7 +1,8 @@
 import tensorflow as tf
 
-from groupy.gconv.make_gconv_indices import make_o_z3_indices, \
-    make_o_ot_indices, make_c4h_z3_indices, make_c4h_c4ht_indices, make_d4h_z3_indices, make_d4h_d4ht_indices, make_oh_z3_indices, make_oh_oht_indices, flatten_indices_3d
+from groupy.gconv.make_gconv_indices import make_o_z3_indices, make_o_ot_indices, make_c4h_z3_indices, \
+    make_c4h_c4ht_indices, make_d4h_z3_indices, make_d4h_d4ht_indices, make_oh_z3_indices, make_oh_oht_indices, \
+    flatten_indices_3d
 from groupy.gconv.tensorflow_gconv.transform_filter import transform_filter_3d_nhwc
 
 

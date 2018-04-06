@@ -4,22 +4,13 @@ import random
 import numpy as np
 from groupy.garray.matrix_garray import MatrixGArray
 
-'''
-Implementation of the space group Oh that allows translations.
-It has no official name, and is therefore now referred to as Oht.
+""" 
+Implementation of the non-orientation perserving variant of group Oh -- O hwith translations. 
+The int parameterisation is similar to that of Oh, but with the added 3D translation (u, v, w) to indicate
+translation in Z3 (i.e. i, m, u, v, w). 
 
-Implementation is similar to that of group Oh. However, to represent
-the translations in a 3D space, the int parameterization is now
-in the form of (i, m, u, v, w) representing the index of the unmirrored
-element in the element list, the mirror (1 or -1)  and the translation
-in the x, y and z direction respectively.
-
-To accurately represent the translation, we use 4x4 homogeneous matrices
-(hmat) instead of the 3x3 matrix.
-
-Note: self.base_elements are 3x3 matrices.
-'''
-
+4x4 homogeneous matrices (hmat) are used to represent the transformation in matrix format. 
+"""
 
 class OhtArray(MatrixGArray):
     parameterizations = ['int', 'hmat']
