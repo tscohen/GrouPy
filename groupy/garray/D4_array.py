@@ -6,7 +6,6 @@ from groupy.garray.Z2_array import Z2Array
 
 from groupy.garray.matrix_garray import MatrixGArray
 
-
 class D4Array(MatrixGArray):
 
     parameterizations = ['int', 'mat', 'hmat']
