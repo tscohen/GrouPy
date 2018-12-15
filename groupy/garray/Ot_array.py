@@ -38,7 +38,7 @@ class OtArray(MatrixGArray):
 
         input = hmat_data.reshape((-1, 4, 4))
         data = np.zeros((input.shape[0], 4), dtype=np.int)
-        for i in xrange(input.shape[0]):
+        for i in range(input.shape[0]):
             hmat = input[i]
             mat = [elem[0:3] for elem in hmat.tolist()][0:3]
             index = self.base_elements.index(mat)
@@ -62,7 +62,7 @@ class OtArray(MatrixGArray):
         w = int_data[..., 3].flatten()
         data = np.zeros((len(i),) + (4, 4), dtype=np.int)
 
-        for j in xrange(len(i)):
+        for j in range(len(i)):
             mat = self.base_elements[i[j]]
             data[j, 0:3, 0:3] = mat
             data[j, 0, 3] = u[j]
@@ -126,6 +126,6 @@ def rand(minu, maxu, minv, maxv, minw, maxw, size=()):
 
 
 def meshgrid(minu=-1, maxu=2, minv=-1, maxv=2, minw=-1, maxw=2):
-    li = [[i, u, v, w] for i in xrange(24) for u in xrange(minu, maxu) for v in xrange(minv, maxv) for
-          w in xrange(minw, maxw)]
+    li = [[i, u, v, w] for i in range(24) for u in range(minu, maxu) for v in range(minv, maxv) for
+          w in range(minw, maxw)]
     return OtArray(li, p='int')

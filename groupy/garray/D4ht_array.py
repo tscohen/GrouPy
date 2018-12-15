@@ -53,7 +53,7 @@ class D4htArray(MatrixGArray):
 
         input = hmat_data.reshape((-1, 4, 4))
         data = np.zeros((input.shape[0], 6), dtype=np.int)
-        for i in xrange(input.shape[0]):
+        for i in range(input.shape[0]):
             hmat = input[i]
             mat = [elem[0:3] for elem in hmat.tolist()][0:3]
             # check for reflection
@@ -97,7 +97,7 @@ class D4htArray(MatrixGArray):
 
         data = np.zeros((len(y),) + (4, 4), dtype=np.int)
 
-        for j in xrange(len(y)):
+        for j in range(len(y)):
             index = (y[j] * 4) + z[j]
             mat = self.elements[index]
             mat = np.array(mat) * ((-1) ** m[j])  # mirror if reflection
@@ -170,6 +170,6 @@ def meshgrid(minu=-1, maxu=2, minv=-1, maxv=2, minw=-1, maxw=2):
     Creates a meshgrid of all elements of the group, within the given
     translation parameters.
     '''
-    li = [[y, z, m, u, v, w] for y in xrange(2) for z in xrange(4) for m in xrange(2) for u in xrange(minu, maxu) for v
-          in xrange(minv, maxv) for w in xrange(minw, maxw)]
+    li = [[y, z, m, u, v, w] for y in range(2) for z in range(4) for m in range(2) for u in range(minu, maxu) for v
+          in range(minv, maxv) for w in range(minw, maxw)]
     return D4htArray(li, p='int')

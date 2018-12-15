@@ -37,7 +37,7 @@ class OhtArray(MatrixGArray):
 
         input = hmat_data.reshape((-1, 4, 4))
         data = np.zeros((input.shape[0], 5), dtype=np.int)
-        for i in xrange(input.shape[0]):
+        for i in range(input.shape[0]):
             hmat = input[i]
             mat = [elem[0:3] for elem in hmat.tolist()][0:3]
             index, mirror = self.get_int(mat)
@@ -63,7 +63,7 @@ class OhtArray(MatrixGArray):
         w = int_data[..., 4].flatten()
         data = np.zeros((len(i),) + (4, 4), dtype=np.int)
 
-        for j in xrange(len(i)):
+        for j in range(len(i)):
             mat = self.get_mat(i[j], m[j])
             data[j, 0:3, 0:3] = mat
             data[j, 0, 3] = u[j]
@@ -146,7 +146,7 @@ def meshgrid(minu=-1, maxu=2, minv=-1, maxv=2, minw=-1, maxw=2):
     Creates a meshgrid of all elements of the group, within the given
     translation parameters.
     '''
-    li = [[i, m, u, v, w] for i in xrange(24) for m in xrange(2) for u in xrange(minu, maxu) for v in xrange(minv, maxv)
+    li = [[i, m, u, v, w] for i in range(24) for m in range(2) for u in range(minu, maxu) for v in range(minv, maxv)
           for
-          w in xrange(minw, maxw)]
+          w in range(minw, maxw)]
     return OhtArray(li, p='int')

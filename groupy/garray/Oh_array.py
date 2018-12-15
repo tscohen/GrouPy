@@ -46,7 +46,7 @@ class OhArray(MatrixGArray):
 
         input = mat_data.reshape((-1, 3, 3))
         data = np.zeros((input.shape[0], 2), dtype=np.int)
-        for i in xrange(input.shape[0]):
+        for i in range(input.shape[0]):
             mat = input[i]
             index, mirror = self.get_int(mat)
             data[i, 0] = index
@@ -77,7 +77,7 @@ class OhArray(MatrixGArray):
         m = int_data[..., 1].flatten()
         data = np.zeros((len(index),) + (3, 3), dtype=np.int)
 
-        for j in xrange(len(index)):
+        for j in range(len(index)):
             hmat = self.get_mat(index[j], m[j])
             data[j, 0:3, 0:3] = hmat
 
@@ -120,7 +120,7 @@ class OhGroup(FiniteGroup, OhArray):
     def __init__(self):
         OhArray.__init__(
             self,
-            data=np.array([[i, j] for i in xrange(24) for j in xrange(2)]),
+            data=np.array([[i, j] for i in range(24) for j in range(2)]),
             p='int'
         )
         FiniteGroup.__init__(self, OhArray)
@@ -156,4 +156,4 @@ def meshgrid(i=24, m=2):
     Creates a meshgrid of all elements of the group, within the given
     translation parameters.
     '''
-    return OhArray([[[k, l] for l in xrange(m)] for k in xrange(i)])
+    return OhArray([[[k, l] for l in range(m)] for k in range(i)])

@@ -38,7 +38,7 @@ class C4htArray(MatrixGArray):
 
         input = hmat_data.reshape((-1, 4, 4))
         data = np.zeros((input.shape[0], 5), dtype=np.int)
-        for i in xrange(input.shape[0]):
+        for i in range(input.shape[0]):
             hmat = input[i]
             mat = [elem[0:3] for elem in hmat.tolist()][0:3]
             index = self.elements.index(mat)
@@ -69,7 +69,7 @@ class C4htArray(MatrixGArray):
         w = int_data[..., 4].flatten()
         data = np.zeros((len(y),) + (4, 4), dtype=np.int)
 
-        for j in xrange(len(y)):
+        for j in range(len(y)):
             index = (y[j] * 4) + z[j]
             mat = self.elements[index]
 
@@ -145,7 +145,7 @@ def meshgrid(minu=-1, maxu=2, minv=-1, maxv=2, minw=-1, maxw=2):
     Creates a meshgrid of all elements of the group, within the given
     translation parameters.
     '''
-    li = [[i, m, u, v, w] for i in xrange(2) for m in xrange(4) for u in xrange(minu, maxu) for v in xrange(minv, maxv)
+    li = [[i, m, u, v, w] for i in range(2) for m in range(4) for u in range(minu, maxu) for v in range(minv, maxv)
           for
-          w in xrange(minw, maxw)]
+          w in range(minw, maxw)]
     return C4htArray(li, p='int')

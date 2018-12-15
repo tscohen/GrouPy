@@ -47,7 +47,7 @@ class OArray(MatrixGArray):
 
         input = mat_data.reshape((-1, 3, 3))
         data = np.zeros((input.shape[0], 1), dtype=np.int)
-        for i in xrange(input.shape[0]):
+        for i in range(input.shape[0]):
             mat = input[i]
             index = self.elements.index(mat.tolist())
             data[i, 0] = index
@@ -63,7 +63,7 @@ class OArray(MatrixGArray):
         i = int_data[..., 0].flatten()
         data = np.zeros((len(i),) + (3, 3), dtype=np.int)
 
-        for j in xrange(len(i)):
+        for j in range(len(i)):
             mat = self.elements[i[j]]
             data[j, 0:3, 0:3] = mat
 

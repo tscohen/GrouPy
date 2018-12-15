@@ -45,7 +45,7 @@ class D4hArray(MatrixGArray):
 
         input = mat_data.reshape((-1, 3, 3))
         data = np.zeros((input.shape[0], 3), dtype=np.int)
-        for i in xrange(input.shape[0]):
+        for i in range(input.shape[0]):
             mat = input[i]
             # check for reflection
             if mat.tolist() not in self.elements:
@@ -73,7 +73,7 @@ class D4hArray(MatrixGArray):
         m = int_data[..., 2].flatten()
         data = np.zeros((len(y),) + (3, 3), dtype=np.int)
 
-        for j in xrange(len(y)):
+        for j in range(len(y)):
             index = (y[j] * 4) + z[j]
             mat = self.elements[index]
             mat = np.array(mat) * ((-1) ** m[j])    # mirror if reflection
@@ -118,7 +118,7 @@ class D4hGroup(FiniteGroup, D4hArray):
     def __init__(self):
         D4hArray.__init__(
             self,
-            data=np.array([[i, j, m] for i in xrange(2) for j in xrange(4) for m in xrange(2)]),
+            data=np.array([[i, j, m] for i in range(2) for j in range(4) for m in range(2)]),
             p='int'
         )
         FiniteGroup.__init__(self, D4hArray)
