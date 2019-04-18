@@ -23,7 +23,7 @@ Install scientific python stack + nosetests
 $ pip install numpy scipy matplotlib nose
 ```
 
-Install [chainer](http://chainer.org/) with CUDNN and HDF5 or install [tensorflow](https://www.tensorflow.org/)
+Install [chainer](http://chainer.org/) with CUDNN and HDF5, install [tensorflow](https://www.tensorflow.org/) or install [PyTorch](http://pytorch.org/).
 
 Clone the latest GrouPy from github and run setup.py
 
@@ -41,7 +41,7 @@ $ nosetests -v
 
 ### TensorFlow
 
-```
+```python
 import numpy as np
 import tensorflow as tf
 from groupy.gconv.tensorflow_gconv.splitgconv2d import gconv2d, gconv2d_util
@@ -73,7 +73,7 @@ print y.shape  # (10, 9, 9, 512)
 
 ### Chainer
 
-```
+```python
 from chainer import Variable
 import cupy as cp
 from groupy.gconv.chainer_gconv import P4ConvZ2, P4ConvP4
@@ -89,6 +89,26 @@ x = Variable(cp.random.randn(10, 3, 9, 9).astype('float32'))
 y = C2(C1(x))
 print y.data.shape  # (10, 64, 4, 9, 9)
 ```
+
+### Pytorch
+
+```python
+import torch
+from torch.autograd import Variable
+from groupy.gconv.pytorch_gconv import P4ConvZ2, P4ConvP4
+
+# Construct G-Conv layers
+C1 = P4ConvZ2(in_channels=3, out_channels=64, kernel_size=3, stride=1, padding=1)
+C2 = P4ConvP4(in_channels=64, out_channels=64, kernel_size=3, stride=1, padding=1)
+
+# Create 10 images with 3 channels and 9x9 pixels:
+x = Variable(torch.randn(10, 3, 9, 9))
+
+# fprop
+y = C2(C1(x))
+print y.data.shape  # (10, 64, 4, 9, 9)
+```
+
 
 
 ## Functionality
