@@ -9,8 +9,8 @@ class GFuncArray(object):
     def __init__(self, v, i2g):
         """
         A GFunc is a discretely sampled function on a group or homogeneous space G.
-        The GFuncArray stores an array of GFuncs,
-        together with a map from G to an index set I (the set of sampling points) and the inverse of this map.
+        The GFuncArray stores an array of GFuncs,together with a map from G to an
+        index set I (the set of sampling points) and the inverse of this map.
 
         The ndarray v can be thought of as a map
          v : J x I -> R
@@ -39,8 +39,8 @@ class GFuncArray(object):
         So v implicitly defines a function v' on G:
         v'(g) = v(g2i(g))
 
-        If we have a map T: G - > G (e.g. left multiplication by g^-1), that we want to precompose with v',
-         w'(g) = v'(T(g))
+        If we have a map T: G - > G (e.g. left multiplication by g^-1), that we want to
+        precompose with v', w'(g) = v'(T(g))
 
         we can get the corresponding map v by composing maps like this:
         I ---> G ---> G ---> I ---> R

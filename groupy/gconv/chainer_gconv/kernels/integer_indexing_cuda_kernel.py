@@ -39,8 +39,8 @@ _index_group_func_str = \
     {{
         CUPY_FOR(i, output.size()) {{
 
-            const int* oshape = output.shape();
-            const int* ostrides = output.strides();
+            const ptrdiff_t* oshape = output.shape();
+            const ptrdiff_t* ostrides = output.strides();
 
             // The flat index i corresponds to the following multi-index in the output array:
             // (output_channel, output_transform, input_channel, input_transform, u, v)
@@ -107,8 +107,8 @@ _grad_index_group_func_str_double = \
     {{
         CUPY_FOR(i, grad_output.size()) {{
 
-            const int* oshape = grad_output.shape();
-            const int* ostrides = grad_output.strides();
+            const ptrdiff_t* oshape = grad_output.shape();
+            const ptrdiff_t* ostrides = grad_output.strides();
 
             // The flat index i corresponds to the following multi-index in the output array:
             // (output_channel, output_transform, input_channel, input_transform, u, v)
@@ -137,8 +137,8 @@ _grad_index_group_func_str_float = \
     {{
         CUPY_FOR(i, grad_output.size()) {{
 
-            const int* oshape = grad_output.shape();
-            const int* ostrides = grad_output.strides();
+            const ptrdiff_t* oshape = grad_output.shape();
+            const ptrdiff_t* ostrides = grad_output.strides();
 
             // The flat index i corresponds to the following multi-index in the output array:
             // (output_channel, output_transform, input_channel, input_transform, u, v)
