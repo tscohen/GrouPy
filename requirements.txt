@@ -1,3 +1,4 @@
 numpy
 scipy
 matplotlib
+tensorflow==1.13.13
