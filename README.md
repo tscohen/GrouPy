@@ -54,11 +54,6 @@ tf.compat.v1.disable_eager_execution()
 
 from groupy.gconv.tensorflow_gconv.splitgconv2d import gconv2d, gconv2d_util
 
-# Laptop GPU shenanigans
-gpu_devices = tf.config.experimental.list_physical_devices("GPU")
-for device in gpu_devices:
-    tf.config.experimental.set_memory_growth(device, True)
-
 # Construct graph
 x = tf.compat.v1.placeholder(tf.float32, [None, 9, 9, 3])
 
