@@ -1,3 +1,8 @@
+# TF2-GrouPy
+
+A Tensorflow 2 port for GrouPy. Best used alongside [tf2-keras-gcnn](https://github.com/neel-dey/tf2-keras-gcnn). Note: this repo includes [group-to-Z2 indexing from nom](https://github.com/nom/GrouPy/commit/7b1128b6cb0d33e5733667f8e07490ea1d44a7dc).
+
+Original README follows below with a tf2-compatible minimal-working-example.
 
 ### Note: If you are looking for a PyTorch implementation, please have a look at the pull requests by Jorn Peters and Adam Bielski (https://github.com/tscohen/GrouPy/pulls).
 
@@ -41,34 +46,37 @@ $ nosetests -v
 
 ### TensorFlow
 
-```
+```python
 import numpy as np
 import tensorflow as tf
+
+tf.compat.v1.disable_eager_execution()
+
 from groupy.gconv.tensorflow_gconv.splitgconv2d import gconv2d, gconv2d_util
 
 # Construct graph
-x = tf.placeholder(tf.float32, [None, 9, 9, 3])
+x = tf.compat.v1.placeholder(tf.float32, [None, 9, 9, 3])
 
 gconv_indices, gconv_shape_info, w_shape = gconv2d_util(
     h_input='Z2', h_output='D4', in_channels=3, out_channels=64, ksize=3)
-w = tf.Variable(tf.truncated_normal(w_shape, stddev=1.))
+w = tf.Variable(tf.random.truncated_normal(w_shape, stddev=1.))
 y = gconv2d(input=x, filter=w, strides=[1, 1, 1, 1], padding='SAME',
             gconv_indices=gconv_indices, gconv_shape_info=gconv_shape_info)
 
 gconv_indices, gconv_shape_info, w_shape = gconv2d_util(
     h_input='D4', h_output='D4', in_channels=64, out_channels=64, ksize=3)
-w = tf.Variable(tf.truncated_normal(w_shape, stddev=1.))
+w = tf.Variable(tf.random.truncated_normal(w_shape, stddev=1.))
 y = gconv2d(input=y, filter=w, strides=[1, 1, 1, 1], padding='SAME',
             gconv_indices=gconv_indices, gconv_shape_info=gconv_shape_info)
 
 # Compute
-init = tf.global_variables_initializer()
-sess = tf.Session()
+init = tf.compat.v1.global_variables_initializer()
+sess = tf.compat.v1.Session()
 sess.run(init)
 y = sess.run(y, feed_dict={x: np.random.randn(10, 9, 9, 3)})
 sess.close()
 
-print y.shape  # (10, 9, 9, 512) 
+print(y.shape)  # (10, 9, 9, 512) 
 ```
 
 ### Chainer
