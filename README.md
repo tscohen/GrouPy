@@ -1,8 +1,8 @@
 # TF2-GrouPy
 
-A Tensorflow 2 port for GrouPy. Best used alongside [tf2-keras-gcnn](https://github.com/neel-dey/tf2-keras-gcnn).
+A Tensorflow 2 port for GrouPy. Best used alongside [tf2-keras-gcnn](https://github.com/neel-dey/tf2-keras-gcnn). Note: this repo includes [group-to-Z2 indexing from nom](https://github.com/nom/GrouPy/commit/7b1128b6cb0d33e5733667f8e07490ea1d44a7dc).
 
-Note: this repo includes [group-to-Z2 indexing from nom](https://github.com/nom/GrouPy/commit/7b1128b6cb0d33e5733667f8e07490ea1d44a7dc).
+Original README follows below with a tf2-compatible minimal-working-example.
 
 ### Note: If you are looking for a PyTorch implementation, please have a look at the pull requests by Jorn Peters and Adam Bielski (https://github.com/tscohen/GrouPy/pulls).
 
